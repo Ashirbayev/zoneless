@@ -1,0 +1,27 @@
+<div class="container" (click)="closeDropdown($event)">
+  <div class="dropdown-container">
+    <div class="dropdown">
+      <button *ngIf="!isDropdownOpen" (click)="toggleDropdown($event)">
+        {{ count }} категории из {{ categories.length }}
+      </button>
+      <div class="categories" *ngIf="isDropdownOpen">
+        <div class="category-item-all" [ngStyle]="{'background-color': 'transparent'}">
+          <input
+            type="checkbox"
+            (change)="toggleSelectAll()"
+            [checked]="isAllSelected()"
+            [disabled]="false"/>
+          <label>Выбрать всё</label>
+        </div>
+        <div *ngFor="let category of categories" class="category-item" [ngStyle]="{'background-color': category.color}">
+          <input
+            type="checkbox"
+            (change)="toggleCategory(category)"
+            [checked]="category.checked"
+          />
+          <label>{{ category.name }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
